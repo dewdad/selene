@@ -2,7 +2,8 @@ var URL = require('url');
 var assign = require('object-assign');
 var webdriver = require('selenium-webdriver');
 var remote = require('selenium-webdriver/remote');
-
+var one = require('retractor').one;
+var isValidReactElement = require('./react-utils').isValidReactElement;
 var until = require('./until');
 var element = require('./element');
 
@@ -15,8 +16,12 @@ var fn = {
   },
 
   find: function (locator, timeout) {
+    if (isValidReactElement(locator)) {
+      return this.findElement(one(locator));
+    }
+
     if (typeof locator == 'string') {
-      locator = { css: locator };
+      return this.findElement({ css: locator });
     }
 
     if (locator.text) {
@@ -177,6 +182,7 @@ function build(opts) {
 
   return driver;
 }
+
 
 module.exports = function selene(driver, opts) {
   if (driver && driver instanceof webdriver.WebDriver) {

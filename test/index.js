@@ -1,7 +1,9 @@
 var webdriver = require('selenium-webdriver');
 var expect = require('unexpected');
-var selene = require('..');
+var rewire = require('rewire');
+var selene = rewire('..');
 
+var React = require('react');
 var WebElement = webdriver.WebElement;
 var NoSuchElementError = webdriver.error.NoSuchElementError;
 
@@ -36,6 +38,27 @@ describe('index', function () {
     it('raises an error if the element is not present', function () {
       var el = se.find('.not_available');
       return expect(el, 'when rejected', 'to be a', NoSuchElementError);
+    });
+
+    describe('providing a React component', function () {
+      var revert;
+
+      beforeEach(function () {
+        var retractorStub = function () { return { css: '.react-component' }; };
+        revert = selene.__set__('one', retractorStub);
+      });
+
+      afterEach(function () {
+        revert();
+      });
+
+      it('finds one component', function () {
+        var Component = React.createClass({
+          render: function () { return (<div className="react-component" />); }
+        });
+
+        return expect(se.find(<Component />), 'when fulfilled', 'to be a', WebElement);
+      });
     });
 
     describe('providing a text', function () {

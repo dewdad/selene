@@ -6,7 +6,7 @@
   "author": "Felix Gnass <f.gnass@liquidlabs.de>",
   "license": "MIT",
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint . && mocha --compilers js:babel-register"
   },
   "keywords": [
     "selenium",
@@ -17,12 +17,18 @@
   "dependencies": {
     "debug": "^2.2.0",
     "object-assign": "^4.0.1",
+    "retractor": "git://github.com/LiquidLabsGmbH/retractor",
     "selenium-webdriver": "^2.52.0"
   },
   "devDependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.6.5",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
+    "eslint-plugin-react": "^4.2.0",
     "mocha": "^2.4.5",
+    "react": "^0.14.7",
+    "rewire": "^2.5.1",
     "unexpected": "^10.8.2"
   }
 }

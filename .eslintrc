@@ -7,6 +7,14 @@
     "es6": true,
     "mocha": true
   },
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "rules": {
     "comma-dangle": [2, "never"],
     "consistent-return": 0,
@@ -19,6 +27,7 @@
     "no-console": 0,
     "no-param-reassign": 0,
     "no-shadow": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "react/jsx-uses-vars": 1
   }
 }
