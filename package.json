@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "doctoc": "^1.0.0",
-    "eslint": "^2.2.0",
+    "eslint": "^3.5.0",
     "eslint-config-airbnb": "^6.0.2",
     "mocha": "^2.4.5",
     "unexpected": "^10.11.0"
