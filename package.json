@@ -24,7 +24,7 @@
   "dependencies": {
     "debug": "^2.2.0",
     "object-assign": "^4.0.1",
-    "selenium-webdriver": "^2.52.0"
+    "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {
     "doctoc": "^1.0.0",
