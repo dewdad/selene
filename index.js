@@ -42,7 +42,7 @@ const Se = {
   },
 
   find(selector, filter, timeout) {
-    return this.createQuery(selector, filter, timeout).one(this);
+    return this.createQuery(getLocator(selector), filter, timeout).one(this);
   },
 
   findAll(selector, filter, timeout) {
@@ -50,12 +50,12 @@ const Se = {
   },
 
   exists(selector, opts) {
-    return this.createQuery(selector, opts).one(this)
+    return this.createQuery(getLocator(selector), opts).one(this)
       .then(res => !!res).catch(() => false);
   },
 
   click(selector, filter, timeout) {
-    return this.find(selector, filter, timeout).click();
+    return this.find(getLocator(selector), filter, timeout).click();
   },
 
   then(cb) {
@@ -103,6 +103,13 @@ const Se = {
     return this;
   }
 };
+
+function getLocator(locator){
+    if(typeof locator === 'string'){
+        return /^\.?\/\//.test(locator)? {xpath: locator}: {css: locator};
+    }
+    return locator;
+}
 
 function decorateDriver(driver, opts) {
   return assign(Object.create(driver), Se, new QueryFactory(), {
