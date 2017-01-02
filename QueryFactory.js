@@ -75,13 +75,13 @@ function QueryFactory() {
   };
 
   Query.prototype.untilOne = function (scope) {
-    return new webdriver.until.WebElementCondition(`for ${this}`,
+    return new webdriver.WebElementCondition(`for ${this}`,
       driver => this.findOne(scope || driver).catch(() => null)
     );
   };
 
   Query.prototype.untilSome = function (scope) {
-    return new webdriver.until.Condition(`for ${this}`,
+    return new webdriver.Condition(`for ${this}`,
       driver => this.findAll(scope || driver).then(
         list => (list && list.length ? list : null)
       )
