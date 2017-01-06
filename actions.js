@@ -21,12 +21,12 @@ const fn = {
 
   keyDown(key) {
     const code = Key[key.toUpperCase()] || key;
-    return ActionSequence.keyDown.call(this, code);
+    return ActionSequence.prototype.keyDown.call(this, code);
   },
 
   keyUp(key) {
     const code = Key[key.toUpperCase()] || key;
-    return ActionSequence.keyUp.call(this, code);
+    return ActionSequence.prototype.keyUp.call(this, code);
   },
 
   click(element, button) {
@@ -35,7 +35,7 @@ const fn = {
       element = null;
     }
     if (typeof button == 'string') button = Button[button.toUpperCase()];
-    return ActionSequence.click.call(this, element, button);
+    return ActionSequence.prototype.click.call(this, element, button);
   }
 };
 
