@@ -51,7 +51,7 @@ const Se = {
 
   exists(selector, opts) {
     return this.createQuery(getLocator(selector), opts).one(this)
-      .then(res => !!res).catch(() => false);
+      .then(res => res).catch(() => false);
   },
 
   click(selector, filter, timeout) {
