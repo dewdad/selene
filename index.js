@@ -105,8 +105,8 @@ const Se = {
 };
 
 function getLocator(locator){
-    if(typeof locator === 'string'){
-        return /^\.?\/\//.test(locator)? {xpath: locator}: {css: locator};
+    if(typeof locator === 'string' && /^\.?\/\//.test(locator)){
+        return {xpath: locator};
     }
     return locator;
 }
